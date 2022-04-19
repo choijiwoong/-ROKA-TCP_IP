@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/inet.h>
-#include <sys.socket.h>
+#include <arpa/inet.h>
+#include <sys/socket.h>
 
 #define BUF_SIZE 24
 void error_handling(char *message);
@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){//Chap04의 echo_sever.c에 표준입출력사용
 		
 	memset(&serv_adr, 0, sizeof(serv_adr));
 	serv_adr.sin_family=AF_INET;
-	serv_adr.sin_addrs.s_addr=htonl(INADDRY_ANY);
+	serv_adr.sin_addr.s_addr=htonl(INADDR_ANY);
 	serv_adr.sin_port=htons(atoi(argv[1]));
 	
 	if(bind(serv_sock, (struct sockaddr*)&serv_adr, sizeof(serv_adr))==-1)
